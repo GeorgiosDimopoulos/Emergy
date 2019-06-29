@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Emergy.XamarinApp.Views.AccountView"
+             BackgroundColor="#e2dede" Title="Λογαριασμός" Icon="ic_person_black_24dp.png">
+  <ContentPage.Content>
+    <ScrollView Orientation="Vertical">
+    <StackLayout Orientation="Vertical" Padding="10">
+      <Label Text="Όνομα" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="NameEntry" FontSize="Medium"/>
+      <Label Text="Επίθετο" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="SurNameEntry" FontSize="Medium"/>
+      <Label Text="E-mail" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="UsernameEntry" Unfocused="UsernameEntry_OnUnfocused" Focused="UsernameEntry_OnFocused" FontSize="Medium"/>
+      <Label Text="Κωδικός Πρόσβασης" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="PasswordEntry" IsPassword="True" Focused="PasswordEntry_OnFocused" Unfocused="PasswordEntry_OnCompleted" FontSize="Medium"/>
+      <!--<Label Text="Επιβεβαίωση" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="PasswordCheckEntry" IsPassword="True" WidthRequest="100" FontSize="Medium"/>-->
+      <Label Text="Ηλικία" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="AgeEntry" WidthRequest="100" FontSize="Medium"/>
+      <Label Text="Τηλέφωνο" TextColor="Black" FontSize="Medium"/>
+      <Entry x:Name="PhoneEntry" WidthRequest="100" FontSize="Medium"/>
+      <Button BackgroundColor="Red" x:Name="CreateButton" Text="Αποθήκευση" TextColor="White" Clicked="CreateButton_OnClicked" FontSize="Medium"/>
+    </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+
+</ContentPage>

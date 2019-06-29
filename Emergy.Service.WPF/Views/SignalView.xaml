@@ -1,0 +1,88 @@
+﻿<Window x:Class="Emergy.Service.WPF.Views.SignalView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        xmlns:local="clr-namespace:Emergy.Service.WPF.Views"
+        xmlns:viewModels="clr-namespace:Emergy.Service.WPF.ViewModels"
+        xmlns:converters="clr-namespace:OrderfyServer.Converters"
+        mc:Ignorable="d"        
+        Title="SignalView" Height="800" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.DataContext>
+        <viewModels:SignalViewViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:BackgroundConverter x:Key="BackgroundConverter"></converters:BackgroundConverter>
+    </Window.Resources>
+    <Grid>
+        <!--<Grid x:Name="ServiceInfos" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="6,50,-6.4,0">
+            <Grid.DataContext>
+                <viewModels:ServiceViewViewModel/>
+            </Grid.DataContext>
+            <ListView x:Name="ServiceInfosList" Width="Auto" Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding Services}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="ServiceUsername" Header="SERVICE_USERNAME" DisplayMemberBinding="{Binding Username}"/>
+                        <GridViewColumn x:Name="ServicePlace" Header="SERVICE_LOCATION" DisplayMemberBinding="{Binding ServiceLocation}"/>
+                        <GridViewColumn x:Name="ServiceName" Header="SERVICE_NAME" DisplayMemberBinding="{Binding ServiceName}"/>
+                        <GridViewColumn x:Name="ServiceId" Header="SERVICE_ID" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn x:Name="ServiceOwn" Header="SERVICE_OWN" DisplayMemberBinding="{Binding ServiceOwn}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>-->
+        <Grid>
+            <DockPanel Name="DockPanelMenu" LastChildFill="False" >
+                <Menu BorderBrush="Black" BorderThickness="1" Height="auto" Name="Menu" DockPanel.Dock="Top"  Background="{DynamicResource MaterialDesignBody}" Margin="0,0,-1.4,0">
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <DockPanel HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+                    <MenuItem Header="Πίσω" x:Name="BackButton" Foreground="#DDFFFFFF" FontSize="12" Click="Back_OnClickack_Click"/>
+                    <MenuItem Header="Εμφάνιση Περιεχομένου" FontSize="12" Foreground="#DDFFFFFF" HorizontalAlignment="Right">
+                        <MenuItem x:Name="AccidentButton" Header="Περιστατικά" Click="Accidents_OnClick" FontSize="12"/>
+                        <MenuItem x:Name="MapButton" Header="Χάρτης" Click="Maps_OnClick" IsChecked="True" IsCheckable="True"/>
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
+        </Grid>
+        <Grid x:Name="AccidentsList" Visibility="Hidden" Margin="0,50,-0.4,0.4">
+            <ListView x:Name="AccidentListView" HorizontalAlignment="Left" Width="Auto" Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding Signals}" Margin="0,50,0,0">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Ολοκλήρωση" x:Name="DeleteSignal" Click="DeleteSignal_OnClick"/>
+                        <MenuItem Header="Ολοκλήρωση όλων" x:Name="DeleteAllSignals" Click="DeleteAllSignals_OnClick"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="SignalCode" Width="300" Header="Κωδικός Σήματος" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn x:Name="SignalTime" Width="200" Header="Τύπος Συμβάντος" DisplayMemberBinding="{Binding Types}"/>
+                        <GridViewColumn x:Name="Latitude" Header="Γεωγραφικό Πλάτος" DisplayMemberBinding="{Binding Latitude}" Width="300"/>
+                        <GridViewColumn x:Name="Longtitude" Header="Γεωγραφικό Μήκος" DisplayMemberBinding="{Binding Longitude}" Width="300"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid x:Name="Map" Visibility="Visible" Margin="0,50,-0.4,0.4">
+            <m:Map x:Name="TheMap" CredentialsProvider="Av6IyPOcMfpxBW8cDwOjQGTYs2CSh_KYNbw1lMWt5S-w1mGyXN5Qdbzt7t8Bm2c5" Center="37.9795,23.71" ZoomLevel="10" AnimationLevel="Full">
+                <m:MapItemsControl ItemsSource="{Binding Signals}" Margin="0,-44,-0.4,-0.4">
+                    <m:MapItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <m:Pushpin x:Name="AccidentLocation" Background="{Binding Types, Converter={StaticResource BackgroundConverter} }" Location="{Binding Location}" MouseDoubleClick="FindAccidentLocation"/>
+                        </DataTemplate>
+                    </m:MapItemsControl.ItemTemplate>
+                </m:MapItemsControl>
+                <m:Pushpin x:Name="ServiceLocationPushPin" Location="37.97945,23.71622" Foreground="White" Background="Black" FontSize="7"/>
+            </m:Map>
+        </Grid>
+        <!--<Button x:Name="EditDepartment" ToolTip="Επεξεργασία Στοιχείων της Μονάδας" Width="60" Height="44" Foreground="Black" Background="Transparent" VerticalAlignment="Top" FontSize="20" Click="EditDepartment_OnClickditDepartment_OnClick" HorizontalAlignment="Left" Margin="15,53,0,0">
+            <StackPanel>
+                <Image Source="C:\Users\GeorgiosDimopoulos\Documents\GitHub\Cross-Coders\Emergy\Emergy.Service.WPF\Views\61456.png" Width="33" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Button>-->
+    </Grid>
+</Window>
+    

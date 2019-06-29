@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Emergy.XamarinApp.Views.EmergencyCallView"
+             BackgroundColor="#e2dede"  Title="Κληση" Icon="ic_call_black_24dp.png">
+  <ContentPage.Content>
+    <StackLayout>
+      <StackLayout x:Name="ButtonStackLayout" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,20,0,0">
+        <Button Text="Πυροσβεστική" x:Name="FireDepButton"  Clicked="Button_OnClick" BackgroundColor="#b71c1c"/>
+        <Button Text="Αστυνομία" x:Name="PoliceButton" Clicked="Button_OnClick" BackgroundColor="#b71c1c"/>
+        <Button Text="Νοσοκομείο" x:Name="HospButton" Clicked="Button_OnClick" BackgroundColor="#b71c1c"/>
+      </StackLayout>
+      <Button HorizontalOptions="CenterAndExpand" BackgroundColor="Red" VerticalOptions="EndAndExpand" TextColor="White" Text="Άμεσο Σήμα Κινδύνου" Clicked="Button_OnClick" Margin="0,0,0,20"/>
+      <StackLayout Margin="10" x:Name="LoadingStackLayout" VerticalOptions="Center" IsVisible="False">
+        <Label x:Name="LoadingLabel" HorizontalOptions="Center" TextColor="Black"/>
+        <ActivityIndicator x:Name="Indicator" Color="Black"/>
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

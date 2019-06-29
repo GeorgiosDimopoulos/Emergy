@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Emergy.XamarinApp.Views"
+             x:Class="Emergy.XamarinApp.Views.MasterDetailPageView" Title="Emergy">
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <local:TabbedPageView />
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

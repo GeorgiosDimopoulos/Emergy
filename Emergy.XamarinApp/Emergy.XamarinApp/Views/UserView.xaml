@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Emergy.XamarinApp.ViewModels;assembly=Emergy.XamarinApp"
+             x:Class="Emergy.XamarinApp.Views.UserView"
+             BackgroundColor="#e2dede" 
+             Title="Προφίλ
+             " Icon="ic_group_black_24dp.png">
+  <ContentPage.BindingContext>
+    <viewModels:UserViewViewModel/>
+  </ContentPage.BindingContext>
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="Start">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="130"/>
+          </Grid.ColumnDefinitions>
+          <Entry Grid.Column="0" Grid.Row="0" x:Name="UserEntry" Placeholder="Όνομα" />
+          <Button Grid.Column="1" Grid.Row="0" BackgroundColor="Black" TextColor="White" FontSize="20" Text="Αναζήτηση" Clicked="Search_OnClicked"/>
+        </Grid>
+      <ListView x:Name="UsersListView" Grid.Row="1" ItemsSource="{Binding Users}" IsEnabled="False">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="4"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding Username}" Grid.Column="0" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Switch Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"/>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </Grid>
+    <Button Margin="5" BackgroundColor="Red" VerticalOptions="End" TextColor="White" FontSize="20" Text="Αλλαγή Χρήστη" Clicked="Signup_OnClick"/>
+    <!--<StackLayout Orientation="Horizontal">-->
+        <!--<Button Text="Εγγραφή" BackgroundColor="Transparent" Clicked="Signup_OnClick" TextColor="Black"/>
+        <Button Text="Είσοδος" BackgroundColor="Transparent" TextColor="Black"/>
+    </StackLayout>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
